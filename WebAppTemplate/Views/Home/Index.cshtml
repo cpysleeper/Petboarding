@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to CozyPaws Pet Resort</h1>
+    <p class="lead">
+        Your pet’s home away from home.
+    </p>
+    <p>
+        CozyPaws provides safe, comfortable, and reliable boarding services for your beloved pets.
+    </p>
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <h2>Our Core Values</h2>
+
+        <ul>
+            <li><strong>Safety First</strong> — We prioritize the health and safety of every pet.</li>
+            <li><strong>Compassion</strong> — Every pet is treated with love and care.</li>
+            <li><strong>Trust</strong> — We provide reliable and transparent boarding services.</li>
+            <li><strong>Professional Care</strong> — Our trained staff ensures quality pet care.</li>
+        </ul>
+    </div>
+
+    <div class="col-md-4">
+        <h2>How Our Service Works</h2>
+
+        <ol>
+            <li>Create a pet owner account.</li>
+            <li>Add and manage your pet information.</li>
+            <li>Update emergency contacts, feeding plans, and medications.</li>
+            <li>Create a boarding booking request.</li>
+            <li>Track booking status through your dashboard.</li>
+        </ol>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Why Choose CozyPaws?</h2>
+
+        <p>
+            We understand how important your pets are to your family.
+            Our boarding system helps pet owners easily manage bookings,
+            pet care information, and communication with our staff.
+        </p>
+
+        <p>
+            @Html.ActionLink(
+                "Register Now",
+                "Register",
+                "Account",
+                null,
+                new { @class = "btn btn-primary" }
+            )
+        </p>
+    </div>
+
+</div>
+
+<hr />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Features Available for Pet Owners</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul>
+            <li>Manage pet profiles</li>
+            <li>Update pet medications and feeding plans</li>
+            <li>Maintain emergency contact information</li>
+            <li>Create and track boarding bookings</li>
+            <li>Request booking cancellation</li>
+            <li>Receive booking status updates from employees</li>
+        </ul>
+    </div>
+</div>

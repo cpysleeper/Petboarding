@@ -1,0 +1,85 @@
+﻿@model WebAppTemplate.Models.PetCreateViewModel
+
+@{
+    ViewBag.Title = "Add Pet";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Add Pet</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Species)
+        @Html.TextBoxFor(m => m.Species, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Species, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Breed)
+        @Html.TextBoxFor(m => m.Breed, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Breed, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.DateOfBirth)
+
+        @Html.TextBoxFor(m => m.DateOfBirth, "{0:yyyy-MM-dd}", new
+        {
+            @class = "form-control",
+            type = "date",
+            min = "1900-01-01",
+            max = DateTime.Now.ToString("yyyy-MM-dd")
+        })
+
+        @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Age)
+        @Html.TextBoxFor(m => m.Age, new { @class = "form-control", type = "number" })
+        @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sex)
+        @Html.TextBoxFor(m => m.Sex, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Sex, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Weight)
+        @Html.TextBoxFor(m => m.Weight, new { @class = "form-control", type = "number", step = "0.01" })
+        @Html.ValidationMessageFor(m => m.Weight, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Color)
+        @Html.TextBoxFor(m => m.Color, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Color, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Notes)
+        @Html.TextAreaFor(m => m.Notes, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Notes, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+
+    @Html.ActionLink("Cancel", "Index", "Pets", null, new { @class = "btn btn-secondary" })
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

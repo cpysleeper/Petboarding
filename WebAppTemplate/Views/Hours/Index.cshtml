@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Business Hours";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>CozyPaws Boarding Hours</h1>
+    <p class="lead">
+        Our team is dedicated to providing a safe, comfortable, and caring environment for your pets.
+    </p>
+</div>
+
+<h2>Business Hours</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Opening Hours</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Monday</td>
+            <td>8:00 AM - 6:00 PM</td>
+        </tr>
+        <tr>
+            <td>Tuesday</td>
+            <td>8:00 AM - 6:00 PM</td>
+        </tr>
+        <tr>
+            <td>Wednesday</td>
+            <td>8:00 AM - 6:00 PM</td>
+        </tr>
+        <tr>
+            <td>Thursday</td>
+            <td>8:00 AM - 6:00 PM</td>
+        </tr>
+        <tr>
+            <td>Friday</td>
+            <td>8:00 AM - 7:00 PM</td>
+        </tr>
+        <tr>
+            <td>Saturday</td>
+            <td>9:00 AM - 5:00 PM</td>
+        </tr>
+        <tr>
+            <td>Sunday</td>
+            <td>9:00 AM - 3:00 PM</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+
+<h3>Holiday Hours</h3>
+
+<p>
+    Holiday hours may vary depending on the season and staff availability.
+    Please contact us in advance for holiday boarding reservations.
+</p>
+
+<div class="alert alert-info">
+    <strong>Note:</strong> Pet pick-up and drop-off services must be scheduled during business hours.
+</div>
+
+<p>
+    @Html.ActionLink("Contact Us", "Index", "ContactUs", null, new { @class = "btn btn-primary" })
+</p>

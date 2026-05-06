@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - CozyPaws Admin</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            background-image: url('/Images/emploee_home.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: bottom center;
+        }
+
+        .body-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            @Html.ActionLink("CozyPaws Employee", "Index", "Employee", null, new { @class = "navbar-brand" })
+
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Admin")</li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <span class="navbar-text">Hello @User.Identity.GetUserName()!</span>
+                </li>
+                <li>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                    @Html.AntiForgeryToken()
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="navbar-link">Log out</a>
+                    }
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container body-content" style="margin-top:80px;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - CozyPaws Admin Portal</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

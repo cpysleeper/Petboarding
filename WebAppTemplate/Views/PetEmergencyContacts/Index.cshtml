@@ -1,0 +1,44 @@
+﻿@model WebAppTemplate.Models.EmergencyContactListViewModel
+
+
+@{
+    ViewBag.Title = "Emergency Contacts";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Emergency Contacts</h2>
+
+@Html.ActionLink(
+    "+ Add Emergency Contact",
+    "Create",
+    "PetEmergencyContacts",
+    new { petId = Model.PetId },
+    new { @class = "btn btn-primary" }
+)
+
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Relationship</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Contacts)
+    {
+        <tr>
+            <td>@item.FullName</td>
+            <td>@item.RelationshipToOwner</td>
+            <td>@item.Phone</td>
+            <td>@item.Email</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "PetEmergencyContacts", new { id = item.PetEmergencyContactId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "Delete", "PetEmergencyContacts", new { id = item.PetEmergencyContactId }, new { @class = "btn btn-danger", onclick = "return confirm('Delete this contact?');" })
+            </td>
+        </tr>
+    }
+</table>
+
+<button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>

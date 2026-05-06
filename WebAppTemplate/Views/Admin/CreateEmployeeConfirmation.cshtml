@@ -1,0 +1,11 @@
+@{
+    ViewBag.Title = "Employee Created";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title</h2>
+    <p>The employee account has been created successfully.</p>
+    <p>@Html.ActionLink("Create another employee", "CreateEmployee")</p>
+    <p>@Html.ActionLink("Home", "Index", "Admin")</p>
+</main>

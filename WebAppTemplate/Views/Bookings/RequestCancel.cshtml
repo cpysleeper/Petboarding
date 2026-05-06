@@ -1,0 +1,32 @@
+﻿@model WebAppTemplate.Models.BookingCancelRequestViewModel
+
+@{
+    ViewBag.Title = "Request Cancellation";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Request Cancellation</h2>
+
+<p><strong>Pet:</strong> @Model.PetName</p>
+<p><strong>Start:</strong> @Model.StartTime.ToString("yyyy-MM-dd")</p>
+<p><strong>End:</strong> @Model.EndTime.ToString("yyyy-MM-dd")</p>
+
+@using (Html.BeginForm("RequestCancel", "Bookings", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.BookingId)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CancellationReason)
+        @Html.TextAreaFor(m => m.CancellationReason, new { @class = "form-control", rows = 4 })
+        @Html.ValidationMessageFor(m => m.CancellationReason, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-warning">Submit Cancellation Request</button>
+
+    @Html.ActionLink("Cancel", "Index", "Bookings", null, new { @class = "btn btn-secondary" })
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
