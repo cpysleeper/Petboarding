@@ -97,6 +97,76 @@ Update-Database
 
 ---
 
+## Email and Admin Account Setup
+
+### No-Reply Email Configuration
+
+The system uses a dedicated Gmail account for sending:
+- Email verification links
+- Password reset emails
+- System notifications
+
+Update the following values inside `Web.config`:
+
+```xml
+<add key="emailSMTPURL" value="smtp.gmail.com" />
+<add key="PortNumber" value="587" />
+<add key="emailSMTPPasswordHash" value="YOUR_GMAIL_APP_PASSWORD" />
+<add key="emailSMTPUserNameHash" value="YOUR_EMAIL@gmail.com" />
+<add key="emailFromAddress" value="YOUR_EMAIL@gmail.com" />
+<add key="emailFromName" value="CozyPaws" />
+<add key="emailAppName" value="PetBoardingApp" />
+```
+
+### Gmail App Password Setup
+
+1. Enable 2-Step Verification on your Google account
+2. Go to:
+   https://myaccount.google.com/apppasswords
+3. Generate a new App Password
+4. Copy the generated password
+5. Replace:
+
+```xml
+YOUR_GMAIL_APP_PASSWORD
+```
+
+with the generated password
+
+---
+
+## Admin Account Setup
+
+The application uses a predefined admin account.
+
+Update the following values inside `Web.config`:
+
+```xml
+<add key="AdminUserEmail" value="admin@gmail.com" />
+<add key="AdminUserPassword" value="YOUR_ADMIN_PASSWORD" />
+```
+
+The admin account is automatically created when the application starts if it does not already exist.
+
+### Admin Permissions
+
+The admin account can:
+- Create employee accounts
+- Edit employee information
+- Delete employees
+- Access the admin dashboard
+
+---
+
+## Important Security Note
+
+Do NOT upload real passwords or app passwords to GitHub.
+
+Before pushing the project:
+
+- Replace real passwords with placeholders
+- Or use environment variables / user secrets for production
+
 ## Author
 
 cpysleeper
