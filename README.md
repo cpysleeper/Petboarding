@@ -167,6 +167,12 @@ Before pushing the project:
 - Replace real passwords with placeholders
 - Or use environment variables / user secrets for production
 
+# Screenshots
+
+## Home Page
+
+![Home Page](home_ss.png)
+
 ## Author
 
 cpysleeper
