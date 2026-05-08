@@ -1,0 +1,117 @@
+﻿@model CozyPawsPetboarding.Models.EmployeeDashboardViewModel
+
+@{
+    ViewBag.Title = "Employee Dashboard";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<h2>Employee Dashboard</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<h3>Bookings</h3>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Pet</th>
+        <th>Owner Email</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Status</th>
+        <th>Update Status</th>
+    </tr>
+
+    @foreach (var booking in Model.Bookings)
+    {
+        <tr>
+            <td>@booking.PetName</td>
+            <td>@booking.OwnerEmail</td>
+            <td>@booking.StartTime.ToString("yyyy-MM-dd")</td>
+            <td>@booking.EndTime.ToString("yyyy-MM-dd")</td>
+            <td>@booking.Status</td>
+            <td>
+                @using (Html.BeginForm("UpdateBookingStatus", "Employee", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("BookingId", booking.BookingId)
+
+                    <select name="Status" class="form-control">
+                        <option value="Pending">Pending</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Checked In">Checked In</option>
+                        <option value="Checked Out">Checked Out</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+
+                    <input type="text" name="Notes" class="form-control" placeholder="Notes" />
+
+                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<h3>Cancellation Requests</h3>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Pet</th>
+        <th>Owner Email</th>
+        <th>Dates</th>
+        <th>Status</th>
+    </tr>
+
+    @foreach (var booking in Model.Bookings.Where(b => b.Status == "Cancellation Requested"))
+    {
+        <tr>
+            <td>@booking.PetName</td>
+            <td>@booking.OwnerEmail</td>
+            <td>@booking.StartTime.ToString("yyyy-MM-dd") - @booking.EndTime.ToString("yyyy-MM-dd")</td>
+            <td>@booking.Status</td>
+        </tr>
+    }
+</table>
+
+<h3>Contact Us Messages</h3>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Status</th>
+        <th>Submitted</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var msg in Model.ContactMessages)
+    {
+        <tr>
+            <td>@msg.FullName</td>
+            <td>@msg.Email</td>
+            <td>@msg.Subject</td>
+            <td>@msg.Status</td>
+            <td>@msg.SubmittedAt.ToString("yyyy-MM-dd")</td>
+            <td>
+                @using (Html.BeginForm("MarkContactResolved", "Employee", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("id", msg.ContactUsSubmissionId)
+
+                    <button type="submit" class="btn btn-success btn-sm">
+                        Mark Resolved
+                    </button>
+                }
+            </td>
+        </tr>
+    }
+</table>

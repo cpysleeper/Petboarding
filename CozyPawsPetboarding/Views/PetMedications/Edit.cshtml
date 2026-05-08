@@ -1,0 +1,63 @@
+﻿@model CozyPawsPetboarding.Models.MedicationEditViewModel
+
+@{
+    ViewBag.Title = "Edit Medication";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Edit Medication</h2>
+
+@using (Html.BeginForm("Edit", "PetMedications", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(m => m.PetMedicationId)
+    @Html.HiddenFor(m => m.PetId)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.MedicationName)
+        @Html.TextBoxFor(m => m.MedicationName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MedicationName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Dosage)
+        @Html.TextBoxFor(m => m.Dosage, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Dosage, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Frequency)
+        @Html.TextBoxFor(m => m.Frequency, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Frequency, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.StartDate)
+        @Html.TextBoxFor(m => m.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(m => m.StartDate, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.EndDate)
+        @Html.TextBoxFor(m => m.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Instructions)
+        @Html.TextAreaFor(m => m.Instructions, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Instructions, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+
+    @Html.ActionLink("Cancel", "Index", "PetMedications",
+        new { petId = Model.PetId },
+        new { @class = "btn btn-secondary" })
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

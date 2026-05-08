@@ -1,0 +1,52 @@
+﻿@model CozyPawsPetboarding.Models.PetListViewModel
+
+@{
+    ViewBag.Title = "My Pets";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>My Pets</h2>
+
+<p>
+    @Html.ActionLink("+ Add New Pet", "Create", "Pets", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Species</th>
+            <th>Breed</th>
+            <th>Age</th>
+            <th>Weight</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model.Pets != null && Model.Pets.Any())
+        {
+            foreach (var pet in Model.Pets)
+            {
+                <tr>
+                    <td>@pet.Name</td>
+                    <td>@pet.Species</td>
+                    <td>@pet.Breed</td>
+                    <td>@pet.Age</td>
+                    <td>@pet.Weight</td>
+                    <td>
+                        @Html.ActionLink("View", "Details", "Pets", new { id = pet.PetId }, new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Delete", "Remove", "Pets", new { id = pet.PetId }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">You do not have any pets yet.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

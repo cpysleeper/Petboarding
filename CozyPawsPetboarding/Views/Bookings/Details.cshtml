@@ -1,0 +1,47 @@
+﻿@model CozyPawsPetboarding.Models.DataModel.Booking
+
+@{
+    ViewBag.Title = "Booking Details";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Booking Details</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Booking Information</strong>
+    </div>
+
+    <div class="panel-body">
+        <p><strong>Booking ID:</strong> @Model.BookingId</p>
+
+        <p><strong>Pet:</strong> @(Model.Pet != null ? Model.Pet.Name : "N/A")</p>
+
+        <p><strong>Start Time:</strong> @Model.BookingStartTime.ToString("MMM dd, yyyy hh:mm tt")</p>
+
+        <p><strong>End Time:</strong> @Model.BookingEndTime.ToString("MMM dd, yyyy hh:mm tt")</p>
+
+        <p><strong>Status:</strong> @Model.Status</p>
+
+        <p><strong>Check-In Method:</strong> @Model.CheckInMethod</p>
+
+        <p><strong>Check-Out Method:</strong> @Model.CheckOutMethod</p>
+
+        <p><strong>Special Instructions:</strong> @Model.SpecialInstructions</p>
+
+        <p><strong>Cancellation Reason:</strong> @Model.CancellationReason</p>
+
+        <p>
+            <strong>Canceled At:</strong>
+            @(Model.CanceledAt.HasValue ? Model.CanceledAt.Value.ToString("MMM dd, yyyy hh:mm tt") : "Not canceled")
+        </p>
+
+        <p><strong>Created At:</strong> @Model.CreatedAt.ToString("MMM dd, yyyy hh:mm tt")</p>
+
+        <p><strong>Updated At:</strong> @Model.UpdatedAt.ToString("MMM dd, yyyy hh:mm tt")</p>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Back to My Bookings", "Index", "Bookings", null, new { @class = "btn btn-default" })
+</p>

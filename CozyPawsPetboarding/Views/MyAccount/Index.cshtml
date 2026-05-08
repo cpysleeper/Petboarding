@@ -1,0 +1,28 @@
+﻿@model CozyPawsPetboarding.Models.DataModel.PetOwner
+
+@{
+    ViewBag.Title = "My Account";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>My Account</h2>
+
+@if (Model == null)
+{
+    <p>No pet owner profile found for this account.</p>
+}
+else
+{
+    <div>
+        <h3>@Model.FirstName @Model.LastName</h3>
+
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Address:</strong> @Model.Address</p>
+        <p><strong>City:</strong> @Model.City</p>
+        <p><strong>State:</strong> @Model.State</p>
+        <p><strong>Postal Code:</strong> @Model.PostalCode</p>
+
+        @Html.ActionLink("Edit My Profile", "Edit", "MyAccount", null, new { @class = "btn btn-primary" })
+    </div>
+}
